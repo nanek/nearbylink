@@ -1,0 +1,16 @@
+{% extends '../base.html' %}
+{% block title %}
+Link Info | Nearby Link
+{% endblock %}
+{% block main %}
+
+{% if geolink %}
+  {% if geolink.url %}
+    {{ geolink.url|escape}}<br/>
+  {% else %}
+    Linkmap by {{ geolink.linkmap_key|escape}}<br/>
+    <textarea id="linkmapview">{{ geolink.linkmap|escape}}</textarea><br/>
+  {% endif %}<br/>
+  Short Link to use <a href="{{geolink.geolink}}" target="_new">{{ geolink.geolink|escape}}</a>
+{% endif %}
+{% endblock %}

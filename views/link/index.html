@@ -1,0 +1,70 @@
+{% extends '../base.html' %}
+{% block title %}
+Dashboard | Nearby Link
+{% endblock %}
+{% block main %}
+<p>
+  Want actual short links from goo.gl?  Just <a href="/credentials">authorize
+    Nearby Link</a> to create short urls on your behalf.
+</p>
+<h3>Create a new nearby link</h3>
+<div id="add-section">
+<form action="create" method="post" id="frmLinkAdd">
+  <label for="url">Paste a link, and enter at least one location code where appropriate:</label><br/>
+  <span class="example">For example, http://store-locator.barnesandnoble.com/storelocator/stores.aspx?pagetype=storeList&zip={postal_code}</span>
+  <input type="text" name="url" id="url"></input>
+  <br/><br/>OR<br/><br/>
+  <label for="linkmap_key">On each line enter the value for a code</label>
+  <select name="linkmap_key" id="linkmap_key">
+    <option value="state_code">state_code</option>
+    <option value="state">state</option>
+  </select><label>followed by | and the link to forward to:</label><br/>
+  <span class="example">(For example: VA|http://www.virginia.gov/)</span>
+  <textarea name="linkmap" id="linkmap"></textarea><br/>
+  <input type="submit">
+  <span id="message"></span>
+</form>
+<table id="geotags">
+  <tr><th>Location code</th><th>Example value</th></tr>
+  <tr><td>{postal_code}</td><td>{{ parts.postal_code }}</td></tr>
+  <tr><td>{continent}</td><td>{{ parts.continent }}</td></tr>
+  <tr><td>{latitude}</td><td>{{ parts.latitude }}</td></tr>
+  <tr><td>{longitude}</td><td>{{ parts.longitude }}</td></tr>
+  <tr><td>{country_code}</td><td>{{ parts.country_code }}</td></tr>
+  <tr><td>{region}</td><td>{{ parts.region }}</td></tr>
+  <tr><td>{state}</td><td>{{ parts.state }}</td></tr>
+  <tr><td>{state_code}</td><td>{{ parts.state_code }}</td></tr>
+  <tr><td>{city}</td><td>{{ parts.city }}</td></tr>
+  <tr><td>{postal_code}</td><td>{{ parts.postal_code }}</td></tr>
+  <tr><td>{time_zone}</td><td>{{ parts.time_zone }}</td></tr>
+  <tr><td>{area_code}</td><td>{{ parts.area_code }}</td></tr>
+</table>
+</div>
+
+{% if links %}
+<h3>Previously created nearby links</h3>
+<table id="geolinks">
+  <tr>
+    <th>Links</th>
+    <th>Info</th>
+    <th>Stats</th>
+  </tr>
+  {% for geolink in links %}
+  <tr>
+    <td>
+      <a href="{{geolink.geolink}}" target="_new">{{ geolink.geolink|escape}}</a><br/><br/>
+      {% if geolink.url %}
+      based on {{ geolink.url|escape}}
+      {% else %}
+      linkmap by {{ geolink.linkmap_key|escape}}
+      {% endif %}
+      </i>
+    </td>
+    <td><a href="{{geolink.infolink}}">Info</a></td>
+    <td>{% if geolink.shortlink %}<a
+        href="{{geolink.shortlink}}+">Stats</a>{% endif %}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+{% endblock %}

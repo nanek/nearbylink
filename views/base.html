@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" class="no-js"><head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>{% block title %}{% endblock %}</title>
+	<meta name="description" content="Direct users to a relevant part of your site based on their current location">
+	<meta name="author" content="">
+	
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="_XYOG5X6tT44zzKQFyfxR_OM1HzAqZ4Q0JGgZ6Z2-No" />
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<link rel="stylesheet" href="/static/css/style.css?v=2">
+
+	<script src="/static/js/libs/modernizr-1.7.min.js"></script></head>
+<body>
+	<div id="container">
+    <header>
+    <h1><a class="fontface" href="/">Nearby Link</a></h1>
+    {% if user %}
+    <ul class="nav">
+      <li>{{ user.nickname }}</li>
+      <li><a href="/dashboard/">Dashboard</a></li>
+      <li><a href="/about">FAQ</a></li>
+      <li><a href="{{ logout_url }}">Logout</a></li>
+    </ul>
+    {% endif %}
+		</header>
+
+		<div id="main" role="main">
+          {% block main %}{% endblock %}
+		</div>
+
+    <footer>
+		</footer>
+	</div>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<script>!window.jQuery && document.write(unescape('%3Cscript src="js/libs/jquery-1.5.1.min.js"%3E%3C/script%3E'))</script>
+	<script src="/static/js/plugins.js"></script>
+	<script src="/static/js/script.js"></script>
+	<script>
+		var _gaq=[['_setAccount','UA-22254899-1'],['_trackPageview']]; 
+		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+		s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+{% if user %}
+<script type="text/javascript">
+  var clicky_custom = {};
+  clicky_custom.session = {
+    username: '{{ user.nickname }}',
+  };
+</script>
+{% endif %}
+  <script type="text/javascript">
+    var clicky = { log: function(){ return; }, goal: function(){ return; }};
+    var clicky_site_id = 66402045;
+    (function() {
+      var s = document.createElement('script');
+        s.type = 'text/javascript';
+          s.async = true;
+            s.src = ( document.location.protocol == 'https:' ? 'https://static.getclicky.com/js' : 'http://static.getclicky.com/js' );
+              ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+              })();
+            </script>
+            <a title="Google Analytics Alternative" href="http://getclicky.com/66402045"></a>
+            <noscript><p><img alt="Clicky" width="1" height="1" src="http://in.getclicky.com/66402045ns.gif" /></p></noscript>
+
+</body>
+</html>

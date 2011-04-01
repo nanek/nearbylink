@@ -1,0 +1,50 @@
+{% extends '../base.html' %}
+{% block title %}
+Nearby Link
+{% endblock %}
+
+{% block main %}
+<div id="col1">
+<div id="description">
+  <h2>Direct users to a relevant part of your site, based on their current location</h2>
+  <p>No input from the user required.  Works from any computer or mobile
+  device.</p>
+</div>
+<div id="examples">
+  <h3>Examples</h3>
+  <p>
+  Looks like you are in {{user_state}}
+  {% if user_zip %}
+    near zip code {{user_zip}}
+  {% endif %}  
+  </p><p> 
+  Visit <a
+    href="http://goo.gl/ydDZP">http://goo.gl/ydDZP</a> and you will be taken to
+  the Contact form for the Governor of {{user_state}}.  If
+  a user in another state clicked the same link, they would visit
+  the appropriate contact form for their state.
+  </p><p>
+  Visit <a href="http://goo.gl/8WWa6">http://goo.gl/8WWa6</a> and you will be
+  taken directly to the Barnes and Noble store locator for a zip code near you.
+  </p>
+</div>
+<div id="greatfor">
+  <h3>Great for sharing links on social networks for:</h3>
+  <ul>
+    <li>Tours across the country (Concert, Meetups)</li>
+    <li>A local store locator (Restaurants, Retail, Car dealerships)</li>
+    <li>Deal Sites</li>
+    <li>State / Local representatives</li>
+  </ul>
+</div>
+</div>
+<div id="col2">
+  <h3>Want to create your own dynamic short links<br/> based on the users
+    location?<h3><br/><br/>
+  <a href="/dashboard/" id="dashboard_link" class="large blue awesome">Login to Create links</a>
+</div>
+<script type="text/javascript" charset="utf-8">
+	var _spinnakr_welcome_id = "689980968";
+</script>
+<script src="http://s5.spinnakr.com/js/welcome.js" type="text/javascript" charset="utf-8"></script>
+{% endblock%}
