@@ -1,0 +1,4 @@
+A location based URL redirector built on Google App Engine.
+
+It uses the Quova API to determine a users location based on their IP address.
+It uses the Google URL Shortner API to create short urls.
